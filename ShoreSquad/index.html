@@ -5,25 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShoreSquad</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Responsive map wrapper: full width on small screens, nicer height on desktop */
+        .map-responsive{position:relative;overflow:hidden;padding-bottom:56.25%;}
+        .map-responsive iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+        @media (min-width:900px){
+            /* on larger screens use a fixed-ish height */
+            .map-responsive{padding-bottom:40%;}
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to ShoreSquad</h1>
-        <p>Join us in making our beaches cleaner!</p>
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="container nav-inner">
+                <a class="logo" href="#">ShoreSquad</a>
+                <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false">Menu</button>
+                <ul id="main-menu" class="nav-menu">
+                    <li><a href="#next-cleanup">Next Cleanup</a></li>
+                    <li><a href="#weather">Weather</a></li>
+                    <li><a href="#impact">Impact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+                <a class="btn btn-primary" href="#join">Join</a>
+            </div>
+        </nav>
+
+        <div class="hero container" role="banner">
+            <h1>ShoreSquad — Beach cleanup for Gen Z</h1>
+            <p class="lead">Find local cleanups, check the weather in °C, and track real impact in metric units.</p>
+            <p><strong>Next event:</strong> <span id="hero-next-event">Sat, 6 Dec 2025 • 09:00</span></p>
+            <a class="btn btn-cta" href="#next-cleanup">See next cleanup</a>
+        </div>
     </header>
+
     <main>
-        <section>
-            <h2>About Us</h2>
-            <p>ShoreSquad is a community initiative focused on beach cleanups and environmental awareness.</p>
+        <section id="next-cleanup" class="next-cleanup container" aria-labelledby="next-cleanup-heading">
+            <h2 id="next-cleanup-heading">Next Cleanup</h2>
+            <p><strong>Date &amp; time:</strong> <time datetime="2025-12-06T09:00">Sat, 6 Dec 2025 — 09:00</time></p>
+            <p><strong>Meeting point:</strong> Blue Bay Jetty (01.234°N, 103.567°E)</p>
+            <p><strong>Duration:</strong> ~2 hours</p>
+            <p><strong>What to bring:</strong> water (≥500 mL), sun protection, gloves</p>
+
+            <!-- Responsive Google Map centered on Pasir Ris Park with a labelled pin -->
+            <div class="map-responsive" aria-hidden="false">
+                <iframe
+                    title="Map: Next Cleanup at Pasir Ris Park"
+                    src="https://maps.google.com/maps?q=Next+Cleanup@1.381497,103.955574&z=15&output=embed&hl=en"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    aria-label="Map showing Next Cleanup location at Pasir Ris Park">
+                </iframe>
+            </div>
+
+            <div class="actions">
+                <button id="rsvp-button" class="btn">RSVP</button>
+                <a href="#" class="btn btn-secondary">Share</a>
+            </div>
         </section>
-        <section>
-            <h2>Get Involved</h2>
-            <button id="joinButton">Join a Cleanup</button>
+
+        <section id="weather" class="weather container" aria-labelledby="weather-heading">
+            <h2 id="weather-heading">Weather</h2>
+            <div class="weather-card" role="group" aria-label="Current weather">
+                <div class="temp"><span id="temp-value">27</span>°C</div>
+                <div class="conditions">Partly cloudy</div>
+                <div class="details">Wind: 12 km/h • Humidity: 68%</div>
+                <p class="note">Temperatures and distances are shown using metric units.</p>
+            </div>
+        </section>
+
+        <section id="impact" class="impact container" aria-labelledby="impact-heading">
+            <h2 id="impact-heading">Impact Tracker</h2>
+            <ul class="impact-stats">
+                <li><strong id="kg-collected">1,240</strong> kg of trash collected</li>
+                <li><strong id="participants-count">3,820</strong> participants</li>
+                <li><strong id="co2-saved">2,950</strong> kg CO₂ prevented</li>
+            </ul>
+            <p class="small">All weights are in kilograms (kg).</p>
+            <div class="impact-actions">
+                <a class="btn" href="#report">Report pickup</a>
+                <a class="btn btn-secondary" href="#history">View history</a>
+            </div>
+        </section>
+
+        <section id="about" class="about container" aria-labelledby="about-heading">
+            <h2 id="about-heading">About ShoreSquad</h2>
+            <p>ShoreSquad connects volunteers for local beach cleanups and visualises environmental impact using metric units and °C for temperatures.</p>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 ShoreSquad. All rights reserved.</p>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <p>&copy; 2025 ShoreSquad. All rights reserved.</p>
+            <nav aria-label="Footer navigation">
+                <ul class="footer-links">
+                    <li><a href="#privacy">Privacy</a></li>
+                    <li><a href="#terms">Terms</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <p class="small">Built for Gen Z beach activists. Temperatures are shown in °C.</p>
+        </div>
     </footer>
+
     <script src="js/app.js"></script>
 </body>
 </html>

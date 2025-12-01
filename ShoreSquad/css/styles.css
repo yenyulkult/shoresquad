@@ -1,46 +1,120 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f8ff; /* Light background for a beachy feel */
+/* Import a clean, modern font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root{
+    --ocean: #013a63; /* deep ocean blue */
+    --teal: #2ab7a9;  /* teal accent */
+    --sand: #f4ead3;  /* warm sand */
+    --coral: #ff6b6b; /* coral for buttons */
+    --muted: #6b7280;
+    --card-shadow: 0 6px 18px rgba(1,58,99,0.12);
+    --radius: 12px;
+    --container-max: 1100px;
 }
 
-header {
-    background-color: #0077be; /* Ocean Blue */
-    color: white;
-    padding: 20px;
-    text-align: center;
+/* Base / mobile-first */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+    margin:0;
+    font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: linear-gradient(180deg,var(--sand) 0%, #fff 100%);
+    color:#073642;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
 }
 
-main {
-    padding: 20px;
+.container{
+    width:94%;
+    max-width:var(--container-max);
+    margin:0 auto;
 }
 
-h1 {
-    color: #009688; /* Teal */
+/* Header / Navbar */
+.navbar{
+    background:var(--ocean);
+    color:white;
+}
+.nav-inner{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 0;
+}
+.logo{
+    color:white;
+    font-weight:700;
+    text-decoration:none;
+    font-size:1.2rem;
+}
+.nav-toggle{
+    margin-left:auto;
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.12);
+    color:white;
+    padding:6px 10px;
+    border-radius:8px;
+}
+.nav-menu{display:none;list-style:none;padding:0;margin:0}
+.nav-menu li{margin:8px 0}
+.nav-menu a{color:white;text-decoration:none}
+.btn{display:inline-block;padding:8px 14px;border-radius:10px;text-decoration:none;border:none;cursor:pointer;font-weight:600}
+.btn-primary{background:var(--teal);color:#003437}
+.btn-cta{background:var(--coral);color:white}
+.btn-secondary{background:transparent;color:var(--ocean);border:1px solid rgba(1,58,99,0.08)}
+
+/* Hero */
+.hero{padding:36px 0;text-align:center}
+.hero .lead{color:var(--muted);max-width:720px;margin:12px auto}
+
+/* Sections */
+main section{padding:28px 0}
+section h2{margin:0 0 12px 0}
+
+/* Cards */
+.card, .weather-card, .impact-stats, .about-card{
+    background:white;border-radius:var(--radius);box-shadow:var(--card-shadow);padding:18px
+}
+.weather-card{display:flex;flex-direction:column;gap:8px}
+.temp{font-size:2.4rem;font-weight:700;color:var(--ocean)}
+.conditions{color:var(--muted)}
+
+.impact-stats{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
+.impact-stats li{font-weight:600}
+
+/* Map responsive wrapper (re-declared here to complement inline style) */
+.map-responsive{position:relative;overflow:hidden;padding-bottom:56.25%}
+.map-responsive iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* Actions */
+.actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+
+/* Footer */
+.site-footer{background:transparent;padding:28px 0;color:var(--muted)}
+.footer-links{list-style:none;padding:0;display:flex;gap:12px}
+.footer-links a{text-decoration:none;color:var(--muted)}
+
+/* Larger screens - simple grid/flex layout */
+@media (min-width:720px){
+    .nav-toggle{display:none}
+    .nav-menu{display:flex;margin-left:auto;gap:18px}
+    .nav-menu li{margin:0}
+    .hero{display:flex;align-items:center;justify-content:space-between;text-align:left;padding:48px 0}
+    .hero .container{display:flex;align-items:center;gap:24px}
 }
 
-footer {
-    background-color: #ff6f61; /* Coral */
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+@media (min-width:900px){
+    /* split layout for sections like weather + impact */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+    .map-responsive{padding-bottom:48%}
 }
 
-.button {
-    background-color: #f4c300; /* Sand */
-    color: #0077be; /* Ocean Blue */
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
+/* Small niceties */
+a{color:var(--ocean)}
+h1{color:var(--ocean);margin:0}
+h2{color:var(--ocean)}
+.small{font-size:0.9rem;color:var(--muted)}
 
-.button:hover {
-    background-color: #009688; /* Teal */
-    color: white;
-}
+/* Utility */
+.text-center{text-align:center}
